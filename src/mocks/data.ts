@@ -1,3 +1,5 @@
+// src/mocks/data.ts
+
 import {Station} from "../types.ts";
 
 export const generateRandomStationId = () => {
@@ -8,13 +10,13 @@ export const generateRandomStationId = () => {
 
   const randomLetter1 = randomChar(letters);
   const randomLetter2 = randomChar(letters);
-  const randomNumber = Array.from({ length: 6 }, () => randomChar(numbers)).join('');
+  const randomNumber = Array.from({length: 6}, () => randomChar(numbers)).join('');
 
   return `${randomLetter1}${randomLetter2}${randomNumber}`;
 };
 
 export const generateStations = () => {
-  return Array.from({ length: 60000 }, () => {
+  return Array.from({length: 60000}, () => {
     const randomStationId = generateRandomStationId();
 
     const newStation: Station = {
