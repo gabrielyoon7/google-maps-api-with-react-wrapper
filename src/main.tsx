@@ -9,9 +9,9 @@ async function deferRender() {
     return
   }
 
-  const { worker } = await import('./mocks/browser')
+  const {worker} = await import('./mocks/browser')
 
-  return worker.start()
+  return worker.start({quiet: true})
 }
 
 const queryClient = new QueryClient()
@@ -20,8 +20,8 @@ deferRender().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-        <App />
-        <ReactQueryDevtools initialIsOpen={false} />
+        <App/>
+        <ReactQueryDevtools initialIsOpen={false}/>
       </QueryClientProvider>
     </React.StrictMode>,
   )
