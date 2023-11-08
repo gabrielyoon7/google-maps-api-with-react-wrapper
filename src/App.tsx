@@ -1,5 +1,8 @@
+// src/App.tsx
+
 import {Status, Wrapper} from "@googlemaps/react-wrapper";
 import GoogleMap from "./GoogleMap.tsx";
+import Dashboard from "./Dashboard.tsx";
 
 const render = (status: Status) => {
   switch (status) {
@@ -8,7 +11,12 @@ const render = (status: Status) => {
     case Status.FAILURE:
       return <>에러 발생</>;
     case Status.SUCCESS:
-      return <GoogleMap />;
+      return (
+        <>
+          <GoogleMap/>
+          <Dashboard/>
+        </>
+      );
   }
 };
 
