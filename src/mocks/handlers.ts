@@ -1,6 +1,7 @@
 // src/mocks/handlers.ts
 import {http, HttpResponse} from 'msw'
 import {mockStations} from "./data.ts";
+import {Station} from "../types.ts";
 
 export const handlers = [
   http.get(`/stations`, async ({request}) => {
@@ -21,9 +22,27 @@ export const handlers = [
       longitude: Number(longitude) - Number(longitudeDelta),
     };
 
-    console.log(latitude, longitude, latitudeDelta, longitudeDelta, northEastBoundary, southWestBoundary)
+    console.log(latitude, longitude, latitudeDelta, longitudeDelta, northEastBoundary, southWestBoundary);
 
+    const isStationLatitudeWithinBounds = (station: Station) => {
+      return (
+        station.latitude > southWestBoundary.latitude &&
+        station.latitude < northEastBoundary.latitude
+      );
+    };
 
-    return HttpResponse.json(mockStations);
+    const isStationLongitudeWithinBounds = (station: Station) => {
+      return (
+        station.longitude > southWestBoundary.longitude &&
+        station.longitude < northEastBoundary.longitude
+      );
+    };
+
+    const foundStations = mockStations.filter(
+      (station) =>
+        isStationLatitudeWithinBounds(station) && isStationLongitudeWithinBounds(station)
+    )
+    
+    return HttpResponse.json(foundStations);
   }),
 ]

@@ -25,9 +25,14 @@ function Dashboard() {
     return <>에러 발생</>;
   }
 
+  if (stations === undefined) {
+    return <></>;
+  }
+
   return (
     <div style={dashboardStyle}>
-      {stations?.map(station => (
+      <div>{stations.length}개</div>
+      {stations.map(station => (
         <div key={station.stationId}>
           {station.stationName}
         </div>
