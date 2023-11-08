@@ -3,6 +3,7 @@
 import {Status, Wrapper} from "@googlemaps/react-wrapper";
 import GoogleMap from "./GoogleMap.tsx";
 import Dashboard from "./Dashboard.tsx";
+import MarkerContainer from "./MarkerContainer.tsx";
 
 const render = (status: Status) => {
   switch (status) {
@@ -15,6 +16,7 @@ const render = (status: Status) => {
         <>
           <GoogleMap/>
           <Dashboard/>
+          <MarkerContainer/>
         </>
       );
   }
