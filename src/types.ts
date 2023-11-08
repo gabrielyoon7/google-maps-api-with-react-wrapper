@@ -6,3 +6,12 @@ export interface Station {
   latitude: number;
   longitude: number;
 }
+
+export interface DisplayPosition {
+  longitude: number;
+  latitude: number;
+  longitudeDelta: number;
+  latitudeDelta: number;
+  zoom: number;
+}
+

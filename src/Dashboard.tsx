@@ -1,6 +1,7 @@
 // src/Dashboard.tsx
 
 import {CSSProperties} from "react";
+import {useStations} from "./useStations.ts";
 
 const dashboardStyle: CSSProperties = {
   position: 'absolute',
@@ -14,9 +15,23 @@ const dashboardStyle: CSSProperties = {
 
 function Dashboard() {
 
+  const {data: stations, isLoading, isError} = useStations();
+
+  if (isLoading) {
+    return <>로딩중...</>;
+  }
+
+  if (isError) {
+    return <>에러 발생</>;
+  }
+
   return (
     <div style={dashboardStyle}>
-      hi
+      {stations?.map(station => (
+        <div key={station.stationId}>
+          {station.stationName}
+        </div>
+      ))}
     </div>
   );
 }
